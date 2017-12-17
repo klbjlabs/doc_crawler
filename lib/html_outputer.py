@@ -54,6 +54,12 @@ class HtmlOutputer(object):
 		# 	'all_town_url': {
 		# 		'a': ['xxx','xxxx','xxxx']
 		# 	},
+		# 	'doc_list': {
+		# 		'a': [
+		# 			{title: 'xxxxxxx'},
+		# 			{href: 'sdsdsds'}
+		# 		]
+		# 	}
 
 		# }
 
@@ -66,7 +72,7 @@ class HtmlOutputer(object):
 		fout.write('<link rel="stylesheet" href="styles.css" type="text/css" />')
 		fout.write("</head>")
 		fout.write("<body>")
-		fout.write("<h1 class='title'>新方志</h1>")
+		fout.write("<h1 class='title'>新方志 [地情概况]</h1>")
 		# fout.write('<hr/>')
 		fout.write('<ul class="wtree">')
 
@@ -80,8 +86,10 @@ class HtmlOutputer(object):
 					fout.write('<span>%s <div style="display: inline-block; background-color: #FFEB3B;">id: %s</div></span>' % (prov.encode('utf-8'), data['node_id'][prov]))
 					if data['pages_count'][prov] > 0:
 						fout.write('<ul>')
-						for xxlby in data['all_town_url'][prov]:
-							fout.write('<li><span>%s</span></li>' % xxlby)
+						print prov
+						for doc in range(0, len(data['doc_list'][prov])):
+							print '=================='
+							fout.write('<li><span>%s</span></li>' % data['doc_list'][prov][doc]['title'].encode('utf-8'))
 						fout.write('</ul>')
 
 					fout.write('</li>')

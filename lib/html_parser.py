@@ -103,11 +103,13 @@ class HtmlParser(object):
 		# print town_content
 		return town_content
 
-	def parse_every_zhen_list(self, town_content):
+	def parse_doc_list(self, town_content):
+		town_content['doc_list'] = {}
 		for i in town_content['all_town_url']:
 			count = town_content['pages_count'][i]
 			if count > 0:
 				print i
+				town_content['doc_list'][i] = []
 				for k in range(1, count+1):
 					url = town_content['all_town_url'][i][k-1]
 					page_content = self.downloader.download(url)
@@ -115,15 +117,23 @@ class HtmlParser(object):
 					info = soup.find('ul', class_ = 'fzrelocal_items').find_all('a')
 					# print info
 					for j in range(0, len(info)):
-						print info[j]['title']
-						print info[j]['href']
+						# print info[j]['title']
+						# print info[j]['href']
+						doc_obj = { 
+							'title': info[j]['title'],
+							'href': info[j]['href']
+						}
+						print doc_obj
+						town_content['doc_list'][i].append(doc_obj) 
 
 					# print info['title']
 					# print info['href']
 					# print k
 					# print url
-					if k == 1:
-						break
+					# if k == 1:
+					# 	break
+		print town_content
+		return town_content
 
 
 
