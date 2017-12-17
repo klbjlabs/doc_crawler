@@ -24,3 +24,9 @@ class UrlManager(object):
 		new_url = self.new_urls.pop()
 		self.old_urls.add(new_url)
 		return new_url
+
+	def show_all_urls(self):
+		if len(self.new_urls) == 0:
+			print 'url list is empty.'
+			return
+		print self.new_urls
