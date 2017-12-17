@@ -1,6 +1,6 @@
 # coding: utf8
 
-from ruc_spider import url_manager, html_downloader, html_parser, html_outputer
+from spider_lib import url_manager, html_downloader, html_parser, html_outputer
 
 class SpiderMain(object):
 
