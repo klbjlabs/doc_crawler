@@ -72,7 +72,7 @@ class HtmlOutputer(object):
 		fout.write('<link rel="stylesheet" href="styles.css" type="text/css" />')
 		fout.write("</head>")
 		fout.write("<body>")
-		fout.write("<h1 class='title'>新方志 [地情概况]</h1>")
+		fout.write("<h1 class='title'>新方志</h1>")
 		# fout.write('<hr/>')
 		fout.write('<ul class="wtree">')
 
