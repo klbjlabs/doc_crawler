@@ -116,7 +116,7 @@ class HtmlParser(object):
 					url = town_content['all_town_url'][i][k-1]
 					page_content = self.downloader.download(url)
 					soup = BeautifulSoup(page_content, 'html.parser', from_encoding='utf-8')
-					info = soup.find('ul', class_ = 'fzrelocal_items').find_all('a', title=re.compile(u'镇'))
+					info = soup.find('ul', class_ = 'fzrelocal_items').find_all('a', title=re.compile(u'(镇志|镇小志|镇简志|镇图志|镇续志|镇史志)'))
 					# print info
 					for j in range(0, len(info)):
 						# print info[j]['title']
