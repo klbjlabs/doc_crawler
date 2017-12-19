@@ -100,7 +100,8 @@ class HtmlParser(object):
 					url = "http://c.wanfangdata.com.cn/LocalChronicleRegion.aspx?NodeId=%s&PageNo=%d" % (town_content['node_id'][i], x)
 					# print url
 					town_content['all_town_url'][i].append(url)
-		print town_content
+		print t
+		own_content
 		return town_content
 
 	def parse_doc_list(self, town_content):
@@ -109,12 +110,13 @@ class HtmlParser(object):
 			count = town_content['pages_count'][i]
 			if count > 0:
 				print i
+				print '============================================='
 				town_content['doc_list'][i] = []
 				for k in range(1, count+1):
 					url = town_content['all_town_url'][i][k-1]
 					page_content = self.downloader.download(url)
 					soup = BeautifulSoup(page_content, 'html.parser', from_encoding='utf-8')
-					info = soup.find('ul', class_ = 'fzrelocal_items').find_all('a')
+					info = soup.find('ul', class_ = 'fzrelocal_items').find_all('a', title=re.compile(u'镇'))
 					# print info
 					for j in range(0, len(info)):
 						# print info[j]['title']
@@ -123,7 +125,7 @@ class HtmlParser(object):
 							'title': info[j]['title'],
 							'href': info[j]['href']
 						}
-						print doc_obj
+						print doc_obj['title']
 						town_content['doc_list'][i].append(doc_obj) 
 
 					# print info['title']
@@ -132,6 +134,7 @@ class HtmlParser(object):
 					# print url
 					# if k == 1:
 					# 	break
+				print '\n'
 		print town_content
 		return town_content
 
