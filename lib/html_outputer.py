@@ -59,7 +59,12 @@ class HtmlOutputer(object):
 		# 			{title: 'xxxxxxx'},
 		# 			{href: 'sdsdsds'}
 		# 		]
-		# 	}
+		# 	},
+			# 'dir_list': {
+			# 	'doc': [
+			# 		{title: 'xxxxx',href: 'ssss'}
+			# 	]
+			# }
 
 		# }
 
@@ -89,7 +94,7 @@ class HtmlOutputer(object):
 						print prov
 						for doc in range(0, len(data['doc_list'][prov])):
 							print '=================='
-							fout.write('<li><span>%s</span></li>' % data['doc_list'][prov][doc]['title'].encode('utf-8'))
+							fout.write('<li><span>%s</span> [<a target="_blank" href="http://c.g.wanfangdata.com.cn/%s">link</a>]</li>' % (data['doc_list'][prov][doc]['title'].encode('utf-8'), data['doc_list'][prov][doc]['href'].encode('utf-8')))
 						fout.write('</ul>')
 
 					fout.write('</li>')

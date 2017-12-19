@@ -138,9 +138,32 @@ class HtmlParser(object):
 		print town_content
 		return town_content
 
+	def parse_dir_list(self, doc_list):
+		doc_list['dir_list'] = {}
+		for i in doc_list['doc_list']:
+			print i
+			print '============================================='
+			for k in range(0, len(doc_list['doc_list'][i])):
+				title = doc_list['doc_list'][i][k]['title']
+				doc_list['dir_list'][title] = []
+				url = doc_list['doc_list'][i][k]['href']
+				url = 'http://c.g.wanfangdata.com.cn/' + url
+				# print url
+				page_content = self.downloader.download(url)
+				soup = BeautifulSoup(page_content, 'html.parser', from_encoding='utf-8')
+				info = soup.find('ul', class_ = 'fz-list').find_all('a')
+				for j in range(0, len(info)):
+					print info[j]
+					dir_obj = { 
+						'title': info[j].get_text(),
+						'href': info[j]['href']
+					}
+					print dir_obj['title']
+					doc_list['dir_list'][title].append(dir_obj) 
 
-
-
-
+				# print doc_list['doc_list'][i][k]
+				print '\n'
+		print doc_list
+		return doc_list
 
 
